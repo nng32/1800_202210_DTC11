@@ -8,6 +8,8 @@
 This browser based web application to ...
 *Hi im brian im excited about this project because it sounds fun
 
+* Hi, my name is Nathan. I'm excited about this project because I get to learn about making websites.
+	
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
