@@ -6,8 +6,8 @@
 
 ## General Info
 This browser based web application to ...
-* Hi, my name is Nathan. I'm excited about this project because I get to design my own application.
-	
+*Hi im brian im excited about this project because it sounds fun
+
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
