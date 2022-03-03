@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Template | SpeedSchedules</title>
+    <title>Login | SpeedSchedules</title>
     <!-- <meta name="comp1800 template" content="My 1800 App"> -->
 
     <!-- Required meta tags -->
@@ -26,7 +26,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-
+    
     <!-- Other libraries go here -->
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,24 +43,29 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-    <nav id="navPlaceholder"></nav>
+    <!-- <nav id="navPlaceholder"></nav> -->
 
     <!-- Page content go here -->
+    <div class="container text-center m-2">
+        <h1>Login to SpeedSchedules</h1>
+    </div>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Please wait.</div>
 
     <!-- copyright footer -->
-    <footer id="footerPlaceholder"></footer>
+    <!-- <footer id="footerPlaceholder"></footer> -->
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <!-- Link to API keys go here -->
     <!-- <script src="./scripts/firebaseAPI_TEAM99.js"></script> -->
+    <script src="./scripts/firebaseAPI_DTC11.js"></script>
 
     <!-- Link to scripts of your own -->
-    <script src="../scripts/firebaseAPI_DTC11.js"></script>
-    <script src="../scripts/script.js"></script>
-    <script src="../scripts/load_skeleton.js"></script>
-
+    <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/load_skeleton.js"></script>
 </body>
 
 </html>
