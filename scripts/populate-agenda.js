@@ -21,7 +21,6 @@ function displayCards() {
                     newcard.querySelector('.card-location').innerHTML = location;
                     newcard.querySelector('.card-text').innerHTML = details;
                     newcard.querySelector('.card-subtitle').innerHTML = `${timestart.getHours()}:${timestart.getMinutes()}-${timeend.getHours()}:${timeend.getMinutes()}`;
-                    alert(timestart);
 
                     // give unique ids to all elements for future use
                     // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
