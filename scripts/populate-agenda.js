@@ -1,30 +1,42 @@
 function displayCards() {
     let cardTemplate = document.getElementById("agenda-event-card");
 
-    // user is currently hardcoded!!
-    db.collection("users").doc("8WRf773RjVaETBZjvf6n97JVJOg2").collection("events").get().then(snap => {
-        var i = 1;
-        snap.forEach(doc => {
-            var name = doc.data().name;
-            var details = doc.data().details;
-            var location = doc.data().location;
-            var timestart = doc.data().timestart;
-            var timeend = doc.data().timeend;
-            let newcard = cardTemplate.content.cloneNode(true);
+    // check if user is signed in
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            console.log("Retrieving data from " + user.uid);
 
-            newcard.querySelector('.card-title').innerHTML = name;
-            newcard.querySelector('.card-location').innerHTML = location;
-            newcard.querySelector('.card-text').innerHTML = details;
+            // user is currently hardcoded!!
+            db.collection("users").doc(user.uid).collection("events").get().then(snap => {
+                var i = 1;
+                snap.forEach(doc => {
+                    var name = doc.data().name;
+                    var details = doc.data().details;
+                    var location = doc.data().location;
+                    var timestart = doc.data().timestart;
+                    var timeend = doc.data().timeend;
+                    let newcard = cardTemplate.content.cloneNode(true);
 
-            // give unique ids to all elements for future use
-            // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-            // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-            // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+                    newcard.querySelector('.card-title').innerHTML = name;
+                    newcard.querySelector('.card-location').innerHTML = location;
+                    newcard.querySelector('.card-text').innerHTML = details;
 
-            document.getElementById("events-container").appendChild(newcard);
-            i++;
-        })
+                    // give unique ids to all elements for future use
+                    // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
+                    // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
+                    // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+
+                    document.getElementById("events-container").appendChild(newcard);
+                    i++;
+                })
+            })
+        }
+        else {
+            alert("Failed to retrieve data. Please check to make sure you are signed in.");
+        }
     })
+
+
 }
 
 displayCards();
