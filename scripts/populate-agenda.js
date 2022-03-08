@@ -6,7 +6,6 @@ function displayCards() {
         if (user) {
             console.log("Retrieving data from " + user.uid);
 
-            // user is currently hardcoded!!
             db.collection("users").doc(user.uid).collection("events").get().then(snap => {
                 var i = 1;
                 snap.forEach(doc => {
