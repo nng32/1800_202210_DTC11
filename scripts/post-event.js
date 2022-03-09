@@ -1,19 +1,32 @@
+let eventID = localStorage.getItem("eventID");
+
 function postEvent() {
-    var name = $('.eventName').val();
-    var details = $('.details').val();
-    var location = $('.location').val();
-    var timestart = $('.time-start').val();
-    var timeend = $('.time-end').val();
-    var priority = $('.priority').val();
-    var category = $('.category').val();
+    var eventName = $('#eventName').val();
+    var eventDetails = $('#details').val();
+    var eventLocation = $('#location').val();
+    var eventTimestart = new Date($('#time-start').val()); // initialize a date object using the input field's value
+    var eventTimeend = new Date($('#time-end').val());
+    var eventPriority = $('#priority').val();
+    var eventCategory = $('#category').val();
 
     // check if user is signed in
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             console.log("Retrieving data from " + user.uid);
 
-            db.collection("users").doc(user.uid).collection("events").get().then(snap => {
-                
+            $('#form-submit').attr("value", "Saving");
+
+            db.collection("users").doc(user.uid).collection("events").doc(eventID).update({
+                name: eventName,
+                details: eventDetails,
+                location: eventLocation,
+                timestart: firebase.firestore.Timestamp.fromDate(eventTimestart), // convert date object to seconds
+                timeend: firebase.firestore.Timestamp.fromDate(eventTimeend),
+                // priority: eventPriority,
+                category: eventCategory
+            }).then(() => {
+                alert("Events have been updated.");
+                window.location.href = "../main.html";
             })
         }
         else {

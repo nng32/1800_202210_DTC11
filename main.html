@@ -54,14 +54,14 @@
     </div>
     <div id="events-container">
         <template id="agenda-event-card">
-            <div class="card m-2">
+            <a class="card m-2 agenda-card text-decoration-none" href="./events/modify-details.html">
                 <div class="card-body">
                     <h6 class="card-subtitle float-end mb-2 text-muted text-end">7:00-10:30</h6>
                     <h5 class="card-title">Walk the Chaffee</h5>
                     <h6 class="card-location text-muted">Okinawa</h6>
                     <p class="card-text">Take my pet M24 for a neighbourhood stroll</p>
                 </div>
-            </div>
+            </a>
         </template>        
     </div>
 
@@ -77,6 +77,7 @@
 
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
+    <script src="./scripts/main.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/populate-agenda.js"></script>
     <script src="./scripts/load-skeleton.js"></script>

@@ -14,12 +14,18 @@ function displayCards() {
                     var location = doc.data().location;
                     var timestart = doc.data().timestart.toDate();
                     var timeend = doc.data().timeend.toDate();
+                    var id = doc.id;
+                    console.log("Retrieved event " + id);
                     let newcard = cardTemplate.content.cloneNode(true);
 
                     newcard.querySelector('.card-title').innerHTML = name;
                     newcard.querySelector('.card-location').innerHTML = location;
                     newcard.querySelector('.card-text').innerHTML = details;
                     newcard.querySelector('.card-subtitle').innerHTML = `${timestart.getHours()}:${timestart.getMinutes()}-${timeend.getHours()}:${timeend.getMinutes()}`;
+
+                    newcard.querySelector('a').onclick = () => {
+                        storeEventData(id);
+                    }
 
                     // give unique ids to all elements for future use
                     // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);

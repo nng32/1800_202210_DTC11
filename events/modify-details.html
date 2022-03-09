@@ -74,7 +74,7 @@
             </div>
             <div class="col">
                 <label class="form-label">Category</label>
-                <select class="form-select" aria-label="Category select">
+                <select class="form-select" id="category" aria-label="Category select">
                     <option selected>No Category</option>
                     <option value="1">Training</option>
                     <option value="2">Event</option>
@@ -109,7 +109,7 @@
             <label class="form-label">Details</label>
             <input type="text" class="form-control" id="details">
         </div>
-        <button type="submit" class="btn btn-primary">Confirm</button>
+        <input id="form-submit" type="button" class="btn btn-primary" onclick="postEvent()" value="Submit" />
     </form>
 
     <!-- copyright footer -->
