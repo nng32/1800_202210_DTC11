@@ -6,7 +6,7 @@ function postEvent() {
     var eventLocation = $('#location').val();
     var eventTimestart = new Date($('#time-start').val()); // initialize a date object using the input field's value
     var eventTimeend = new Date($('#time-end').val());
-    var eventPriority = $('#priority').val();
+    var eventPriority = $('input[type="radio"][name="btnradio"]:checked').val();
     var eventCategory = $('#category').val();
 
     // check if user is signed in
@@ -22,7 +22,7 @@ function postEvent() {
                 location: eventLocation,
                 timestart: firebase.firestore.Timestamp.fromDate(eventTimestart), // convert date object to seconds
                 timeend: firebase.firestore.Timestamp.fromDate(eventTimeend),
-                // priority: eventPriority,
+                priority: eventPriority,
                 category: eventCategory
             }).then(() => {
                 alert("Events have been updated.");
@@ -34,3 +34,25 @@ function postEvent() {
         }
     })
 }
+
+function retrieveEvent() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            db.collection("users").doc(user.uid).collection("events").doc(eventID).get().then(events => {
+                $('#eventName').val(events.data().name);
+                $('#details').val(events.data().details);
+                $('#location').val(events.data().location);
+                $('#time-start').val(events.data().timestart.toDate().toISOString().slice(0, 16));
+                $('#time-end').val(events.data().timeend.toDate().toISOString().slice(0, 16));
+                $(`#btnradio${events.data().priority}`).prop("checked", true);
+                $('#category').val(events.data().category);
+            })
+        }
+        else {
+            alert("Failed to retrieve data. Please check to make sure you are signed in.");
+        }
+    })
+
+}
+
+retrieveEvent();
