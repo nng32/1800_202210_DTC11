@@ -72,3 +72,10 @@ body {font-family: Verdana, sans-serif;}
   background: #1abc9c;
   color: white !important
 }
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  text-align: center;
+  font-size: 50px;
+}
