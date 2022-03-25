@@ -1,6 +1,12 @@
+function toISODate(date) {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+}
+
 function displayCards() {
     let cardTemplate = document.getElementById("agenda-event-card");
     let category = $('#category').val();
+
+    let dates = [];
 
     if (category == "Show All") {
         filter = ["No Category", "Event", "Training", "Ceremony"];
@@ -15,7 +21,8 @@ function displayCards() {
             console.log("Retrieving data from " + user.uid);
 
             db.collection("users").doc(user.uid).collection("events").orderBy("timestart").get().then(snap => {
-                $(".agenda-card").remove();
+                $("#events-group-container").empty();
+                
                 var i = 1;
                 snap.forEach(doc => {
                     if (filter.includes(doc.data().category)) {
@@ -42,16 +49,24 @@ function displayCards() {
                         // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
                         // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
-                        today = new Date();
-                        if (timestart.getDate() == today.getDate() && timestart.getMonth() == today.getMonth() && timestart.getYear() == today.getYear()) {
-                            document.getElementById("events-container-today").appendChild(newcard);
+                        today = new Date;
+                        
+                        if (dates.includes(toISODate(timestart)) == false) {
+                            let newcat = document.getElementById('events-group').content.cloneNode(true);
+                            newcat.querySelector('#agenda-date-header-xxxx-xx-xx').id = `agenda-date-header-${toISODate(timestart)}`;
+                            newcat.querySelector('#agenda-date-xxxx-xx-xx').id = `agenda-date-${toISODate(timestart)}`;
+
+                            if (toISODate(today) == toISODate(timestart)) {
+                                newcat.querySelector('.events-group-date').innerHTML = 'Today';
+                            }
+                            else {
+                                newcat.querySelector('.events-group-date').innerHTML = `${toISODate(timestart)}`;
+                            }
+                            document.getElementById('events-group-container').appendChild(newcat);
+
+                            dates.push(toISODate(timestart));
                         }
-                        else if (timestart.getDate() == today.getDate() + 1 && timestart.getMonth() == today.getMonth() && timestart.getYear() == today.getYear()) {
-                            document.getElementById("events-container-tomorrow").appendChild(newcard);
-                        }
-                        else {
-                            document.getElementById("events-container").appendChild(newcard);                        
-                        }
+                        document.getElementById(`agenda-date-${toISODate(timestart)}`).appendChild(newcard);
 
                     }
                     else {
