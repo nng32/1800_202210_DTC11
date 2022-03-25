@@ -101,7 +101,7 @@ function copyEventToPersonal() {
                     name: toRetrieve.data().name,
                     details: toRetrieve.data().details,
                     location: toRetrieve.data().location,
-                    timestart: toRetrieve.data().timestart, // convert date object to seconds
+                    timestart: toRetrieve.data().timestart,
                     timeend: toRetrieve.data().timeend,
                     priority: "3",
                     category: toRetrieve.data().category
