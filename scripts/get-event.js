@@ -52,7 +52,22 @@ function retrieveEvent() {
             alert("Failed to retrieve data. Please check to make sure you are signed in.");
         }
     })
+}
 
+function deleteEvent() {
+    $('#btn-delete').attr("value", "Deleting");
+
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            db.collection("users").doc(user.uid).collection("events").doc(eventID).delete().then(() => {
+                alert("Event has been deleted.");
+                window.location.href="../main.html"
+            })
+        }
+        else {
+            alert("Failed to retrieve data. Please check to make sure you are signed in.");
+        }
+    })
 }
 
 function getEventDetails() {

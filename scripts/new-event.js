@@ -14,7 +14,6 @@ function newEvent() {
                 priority: "3",
                 category: "No Category"
             }).then(doc => {
-                alert("Event has been added.");
                 localStorage.setItem("eventID", doc.id)
                 window.location.href = "../events/modify-details.html";
             })
