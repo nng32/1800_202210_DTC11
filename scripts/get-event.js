@@ -6,6 +6,7 @@ function postEvent() {
     var eventLocation = $('#location').val();
     var eventTimestart = new Date($('#time-start').val()); // initialize a date object using the input field's value
     var eventTimeend = new Date($('#time-end').val());
+    var eventRepeat = $('#repeat').val();
     var eventPriority = $('input[type="radio"][name="btnradio"]:checked').val();
     var eventCategory = $('#category').val();
 
@@ -22,6 +23,7 @@ function postEvent() {
                 location: eventLocation,
                 timestart: firebase.firestore.Timestamp.fromDate(eventTimestart), // convert date object to seconds
                 timeend: firebase.firestore.Timestamp.fromDate(eventTimeend),
+                repeat: eventRepeat,
                 priority: eventPriority,
                 category: eventCategory
             }).then(() => {

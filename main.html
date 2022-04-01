@@ -34,21 +34,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Link to styles of your own -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/style.css">
 
 </head>
 
-<body onload="displayCards()">
+<body onload="loadSkeleton('Overview', ''); displayCards()">
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
     <nav id="navPlaceholder"></nav>
 
+    <div class="p-2" id="notifier">Notification!</div>
+
     <!-- Page content go here -->
     <div class="row m-2">
-        <input id="new-btn" class="btn btn-primary col-4" type="button" value="New" onclick="newEvent()" />
-        <div class="col-8">
+        <input id="new-btn" class="btn btn-primary col" type="button" value="New" onclick="newEvent()" />
+        <div class="btn-group col" role="group" aria-label="Past filter" onchange="displayCards()">
+            <input type="radio" class="btn-check" name="btnradio" value="hide-past" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnradio1">Hide Completed</label>
+            
+            <input type="radio" class="btn-check" name="btnradio" value="show-past" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Show Completed</label>
+        </div>
+        <div class="col">
             <select class="form-select" id="category" aria-label="Category select" onchange="displayCards()">
                 <option selected>Show All</option>
                 <option value="No Category">No Category</option>
@@ -97,8 +109,8 @@
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebaseAPI_DTC11.js"></script>
     <script src="./scripts/main.js"></script>
-    <script src="./scripts/script.js"></script>
     <script src="./scripts/new-event.js"></script>
+    <script src="./scripts/get-event.js"></script>
     <script src="./scripts/populate-agenda.js"></script>
     <script src="./scripts/load-skeleton.js"></script>
 
