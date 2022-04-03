@@ -87,16 +87,6 @@ document.querySelector('#go-back').onclick = () => {
 }
 let day_event = calendar.querySelector('.day-event')
 
-
-
-
-/*let dark_mode_toggle = document.querySelector('.dark-mode-switch')
-
-dark_mode_toggle.onclick = () => {
-    document.querySelector('body').classList.toggle('light')
-    document.querySelector('body').classList.toggle('dark')
-}*/
-
 function read_display_Quote() {
     db.collection("events").doc("UCiUtZlyrhlqQK93QCs7")                                                      
       .onSnapshot(tuesdayDoc => {                                                               
@@ -106,21 +96,3 @@ function read_display_Quote() {
 }
 read_display_Quote()        
 
-document.querySelector('#saved').onclick = () => {
-    var iconID = 'save-'; 
-    document.getElementById(iconID).innerText = 'bookmark';
-}
-
-
-function saveBookmark(hikeID) {
-    currentUser.set({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(hikeID)
-        }, {
-            merge: true
-        })
-        .then(function () {
-            console.log("bookmark has been saved for: " + currentUser);
-            var iconID = 'save-' + hikeID;
-            document.getElementById(iconID).innerText = 'bookmark';
-        });
-}
