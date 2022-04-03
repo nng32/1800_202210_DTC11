@@ -1,6 +1,11 @@
-function loadSkeleton() {
-    $('#navPlaceholder').load('../skeletons/nav.html');
-    $('#footerPlaceholder').load('../skeletons/footer.html');
-}
+function loadSkeleton(title, backDestination) {
+    $('#navPlaceholder').load('../skeletons/nav.html', () => {
+        $('#page-title').html(title);
+        $('#back-button').attr('href', backDestination);
+    });
 
-loadSkeleton();
+    $('#footerPlaceholder').load('../skeletons/footer.html', () => {
+
+    });
+    console.log('Skeleton loaded');
+}

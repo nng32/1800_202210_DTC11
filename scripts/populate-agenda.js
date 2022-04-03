@@ -1,10 +1,15 @@
 function toISODate(date) {
-    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+    return `${date.getFullYear()}-${toTwoDigits(date.getMonth() + 1)}-${toTwoDigits(date.getDate())}`;
+}
+
+function toTwoDigits(number) {
+    return number.toString().padStart(2, 0);
 }
 
 function displayCards() {
     let cardTemplate = document.getElementById("agenda-event-card");
     let category = $('#category').val();
+    let showPast = $('input[type="radio"][name="btnradio"]:checked').val() == 'show-past';
 
     let dates = [];
 
@@ -29,8 +34,9 @@ function displayCards() {
                         var name = doc.data().name;
                         var details = doc.data().details;
                         var location = doc.data().location;
-                        var timestart = doc.data().timestart.toDate();
-                        var timeend = doc.data().timeend.toDate();
+                        var eventTimestart = doc.data().timestart.toDate();
+                        var eventTimeend = doc.data().timeend.toDate();
+                        var repeat = doc.data().repeat;
                         var id = doc.id;
                         console.log("Retrieved event " + id);
                         let newcard = cardTemplate.content.cloneNode(true);
@@ -38,7 +44,7 @@ function displayCards() {
                         newcard.querySelector('.card-title').innerHTML = name;
                         newcard.querySelector('.card-location').innerHTML = location;
                         newcard.querySelector('.card-text').innerHTML = details;
-                        newcard.querySelector('.card-subtitle').innerHTML = `${timestart.getHours()}:${timestart.getMinutes()}-${timeend.getHours()}:${timeend.getMinutes()}`;
+                        newcard.querySelector('.card-subtitle').innerHTML = `${toTwoDigits(eventTimestart.getHours())}:${toTwoDigits(eventTimestart.getMinutes())}-${toTwoDigits(eventTimeend.getHours())}:${toTwoDigits(eventTimeend.getMinutes())}`;
 
                         newcard.querySelector('a').onclick = () => {
                             storeEventData(id);
@@ -50,23 +56,55 @@ function displayCards() {
                         // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
 
                         today = new Date;
-                        
-                        if (dates.includes(toISODate(timestart)) == false) {
-                            let newcat = document.getElementById('events-group').content.cloneNode(true);
-                            newcat.querySelector('#agenda-date-header-xxxx-xx-xx').id = `agenda-date-header-${toISODate(timestart)}`;
-                            newcat.querySelector('#agenda-date-xxxx-xx-xx').id = `agenda-date-${toISODate(timestart)}`;
+                        updateDatabase = false;
 
-                            if (toISODate(today) == toISODate(timestart)) {
-                                newcat.querySelector('.events-group-date').innerHTML = 'Today';
+                        while (toISODate(eventTimestart) < toISODate(today) && repeat != 'none') {
+                            switch (repeat) {
+                                case "daily":
+                                    eventTimestart.setDate(eventTimestart.getDate() + 1);
+                                    eventTimeend.setDate(eventTimeend.getDate() + 1);
+                                    break;
+                                case "weekly":
+                                    eventTimestart.setDate(eventTimestart.getDate() + 7);
+                                    eventTimeend.setDate(eventTimeend.getDate() + 7);
+                                    break;
+                                case "monthly":
+                                    eventTimestart.setMonth(eventTimestart.getMonth() + 1);
+                                    eventTimeend.setMonth(eventTimeend.getMonth() + 1);
+                                    break;
                             }
-                            else {
-                                newcat.querySelector('.events-group-date').innerHTML = `${toISODate(timestart)}`;
-                            }
-                            document.getElementById('events-group-container').appendChild(newcat);
-
-                            dates.push(toISODate(timestart));
+                            updateDatabase = true;
                         }
-                        document.getElementById(`agenda-date-${toISODate(timestart)}`).appendChild(newcard);
+
+                        if (updateDatabase) {
+                            db.collection("users").doc(user.uid).collection("events").doc(doc.id).update({
+                                timestart: firebase.firestore.Timestamp.fromDate(eventTimestart),
+                                timeend: firebase.firestore.Timestamp.fromDate(eventTimeend)
+                            })
+                        }
+
+                        if (toISODate(eventTimestart) >= toISODate(today) || showPast) {
+                            // if there is no header for the event's date, create a new one
+                            if (dates.includes(toISODate(eventTimestart)) == false) {
+                                let newcat = document.getElementById('events-group').content.cloneNode(true);
+                                newcat.querySelector('#agenda-date-header-xxxx-xx-xx').id = `agenda-date-header-${toISODate(eventTimestart)}`;
+                                newcat.querySelector('#agenda-date-xxxx-xx-xx').id = `agenda-date-${toISODate(eventTimestart)}`;
+
+                                if (toISODate(today) == toISODate(eventTimestart)) {
+                                    newcat.querySelector('.events-group-date').innerHTML = 'Today';
+                                }
+                                else {
+                                    newcat.querySelector('.events-group-date').innerHTML = `${toISODate(eventTimestart)}`;
+                                }
+                                document.getElementById('events-group-container').appendChild(newcat);
+
+                                dates.push(toISODate(eventTimestart));
+                            }
+
+                        document.getElementById(`agenda-date-${toISODate(eventTimestart)}`).appendChild(newcard);
+                        }
+                        
+
 
                     }
                     else {

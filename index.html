@@ -24,6 +24,9 @@
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 
 </head>
@@ -37,23 +40,9 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./images/speedschedules_logo.png" height="36">
-                SpeedSchedules</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+                SpeedSchedules
+            </a>
+            <a class="btn btn-light d-flex" href="./login.html">Login or Signup</a>
         </div>
     </nav>
 
@@ -61,11 +50,9 @@
         <img class="d-block mx-auto mb-4" src="./images/speedschedules_logo.png" alt="" width="72" height="57">
         <h1 class="display-5 fw-bold">Welcome to SpeedSchedules</h1>
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">The no-nonsense organizer for your busy life.</p>
-            <h2>Get Started</h2>
+            <h2 class="lead mb-4">The no-nonsense organizer for your busy life.</h2>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-info btn-light px-4 gap-3">Login</button>
-                <button type="button" class="btn btn-info btn-lg px-4 gap-3">Signup</button>
+                <a class="btn btn-info btn-lg px-4 gap-3" href="./login.html">Get Started</a>
             </div>
         </div>
     </div>
