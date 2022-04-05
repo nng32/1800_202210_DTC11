@@ -67,7 +67,7 @@ body {
   }
   
   .day + #currentDay {
-    background-color:#e8f4fa;
+    background-color:#0ca2ec;
   }
   .event {
     font-size: 10px;
