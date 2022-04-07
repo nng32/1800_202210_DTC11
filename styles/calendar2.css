@@ -51,13 +51,14 @@ body {
 }
 
 .calendar {
-    height: max-content;
+    height: max-conent;
     width: max-content;
     background-color: var(--bg-main);
     border-radius: 30px;
     padding: 20px;
     position: relative;
     overflow: hidden;
+    margin-top: 100px;
 }
 
 .light .calendar {
@@ -116,6 +117,8 @@ body {
 
 .calendar-days div:hover span {
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    background-color: var(--color-hover);
+    
 }
 
 .calendar-days div span:nth-child(1),
@@ -335,11 +338,11 @@ body {
     left: 0;
     background-color: var(--bg-main);
     padding: 30px;
-    /*gap: 5px;
+    gap: 5px;
     display: grid;
     transform: scale(1.5);
     visibility: hidden;
-    pointer-events: none;*/
+    pointer-events: none;
 
 }
 
