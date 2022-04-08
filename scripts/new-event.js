@@ -11,6 +11,7 @@ function newEvent() {
                 location: "",
                 timestart: firebase.firestore.Timestamp.now(), // convert date object to seconds
                 timeend: firebase.firestore.Timestamp.now(),
+                repeat: "none",
                 priority: "3",
                 category: "No Category"
             }).then(doc => {
