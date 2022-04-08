@@ -5,3 +5,15 @@
 .material-icons {
     color: black;
 }
+
+#navPlaceholder {
+    position: sticky;
+    top: 0;
+    z-index: 6900;
+}
+
+#footerPlaceholder {
+    position: sticky;
+    bottom: 0;
+    z-index: 6900;
+}
