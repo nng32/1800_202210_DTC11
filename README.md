@@ -28,7 +28,7 @@ Content of the project folder:
 It has the following subfolders and files:
 ├── .git                                    # Folder for git repo
 ├── calendar                                # Folder for calendar HTML
-    /calendar3.html                         # 
+    /calendar3.html                         # Calendar page HTML file
 ├── events                                  # Folder for event management HTML
     /modify-details.html                    # Event details form HTML file
     /official-events.html                   # List of official events HTML file
@@ -41,10 +41,7 @@ It has the following subfolders and files:
     /speedschedules_logo.psd                # App logo PSD file
 ├── scripts                                 # Folder for scripts
     /authentication.js                      # Authentication JS file
-    /calendar.js                            # 
-    /calendar2.js                           # 
-    /calendar3.js                           # 
-    /calendar3scrap                         # 
+    /calendar3.js                           # Calendar interaction JS file
     /firebaseAPI_DTC11.js                   # Firebase API JS file
     /get-event.js                           # Event management JS file
     /load-skeleton.js                       # Inject footer/nav JS file
@@ -55,7 +52,7 @@ It has the following subfolders and files:
     /footer.html                            # Footer HTML file
     /nav.html                               # Navbar HTML file
 ├── styles                                  # Folder for CSS
-    /calendar3.css                          #
+    /calendar3.css                          # CSS style for Calendar HTML
     /style.css                              # Custom styles CSS file
 ├── templates                               # Folder for templates
     /template.html                          # Starter HTML file
