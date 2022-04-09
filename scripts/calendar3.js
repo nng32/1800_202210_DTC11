@@ -19,7 +19,7 @@ function openModal(date) {
     $("#date-of-day").text(clicked);
     deleteEventModal.style.display = 'block';
   } else {
-    $("#date-of-day").text(clicked);
+    $("#dates-of-day").text(clicked);
     newEventModal.style.display = 'block';
   }
 
