@@ -10,7 +10,6 @@ function displayCards() {
     let cardTemplate = document.getElementById("agenda-event-card");
     let category = $('#category').val();
     let showPast = $('input[type="radio"][name="btnradio"]:checked').val() == 'show-past';
-
     let dates = [];
 
     if (category == "Show All") {
@@ -100,17 +99,12 @@ function displayCards() {
 
                                 dates.push(toISODate(eventTimestart));
                             }
-
                         document.getElementById(`agenda-date-${toISODate(eventTimestart)}`).appendChild(newcard);
                         }
-                        
-
-
                     }
                     else {
                         console.log(`Event category ${doc.data().category} is not in ${filter}`);
                     }
-
                     i++;
                 })
             })

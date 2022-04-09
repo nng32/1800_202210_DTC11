@@ -3,9 +3,5 @@ function loadSkeleton(title, backDestination) {
         $('#page-title').html(title);
         $('#back-button').attr('href', backDestination);
     });
-
-    $('#footerPlaceholder').load('../skeletons/footer.html', () => {
-
-    });
     console.log('Skeleton loaded');
 }
