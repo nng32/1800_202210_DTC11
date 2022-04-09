@@ -51,8 +51,6 @@ It has the following subfolders and files:
     /main.js                                # Agenda custom name JS file
     /new-event.js                           # Event creation JS file
     /populate-agenda.js                     # Agenda population JS file
-    /script.js                              # 
-    /update.js                              #
 ├── skeletons                               # Folder for common HTML
     /footer.html                            # Footer HTML file
     /nav.html                               # Navbar HTML file
